@@ -1,1 +1,27 @@
-eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('$(f(){$.j("B://A.u.s/r?q=m&l=k",f(a){7 b=a.8.t;7 c=a.8.h;7 d=a.8.i;7 e=[];e.2(\'<0 3="n"><0 3="o">\');5(d.4("晴")!=-1){e.2(\'<0 3="g"></0>\')}6 5(d.4("云")!=-1){e.2(\'<0 3="v"></0>\')}6 5(d.4("阴")!=-1){e.2(\'<0 3="w"></0>\')}6 5(d.4("雨")!=-1){e.2(\'<0 3="x"></0>\')}6 5(d.4("雪")!=-1){e.2(\'<0 3="y"></0>\')}6 5(d.4("雷")!=-1&&d.4("雨")!=-1){e.2(\'<0 3="z"></0>\')}6{e.2(\'<0></0>\')}e.2("<9>"+c+"℃</9><p>"+b+"</p></0></0>");e=e.C("");$("D").E(e)})});',41,41,'div||push|class|indexOf|if|else|var|data|h1||||||function|sunny|qw|tq|getJSON|lkb6hnkgab6o8ips|key|ip|wrapper|container||city|observe|com|cityName|yytianqi|cloudy|overcast|rainy|snowy|stormy|api|http|join|body|html'.split('|'),0,{}))
+$(function() {
+	$.getJSON("http://api.yytianqi.com/observe?city=ip&key=lkb6hnkgab6o8ips", function(a) {
+		var b = a.data.cityName;
+		var c = a.data.qw;
+		var d = a.data.tq;
+		var e = [];
+		e.push('<div class="wrapper"><div class="container">');
+		if (d.indexOf("晴") != -1) {
+			e.push('<div class="sunny"></div>')
+		} else if (d.indexOf("云") != -1) {
+			e.push('<div class="cloudy"></div>')
+		} else if (d.indexOf("阴") != -1) {
+			e.push('<div class="overcast"></div>')
+		} else if (d.indexOf("雨") != -1) {
+			e.push('<div class="rainy"></div>')
+		} else if (d.indexOf("雪") != -1) {
+			e.push('<div class="snowy"></div>')
+		} else if (d.indexOf("雷") != -1 && d.indexOf("雨") != -1) {
+			e.push('<div class="stormy"></div>')
+		} else {
+			e.push('<div></div>')
+		}
+		e.push("<h1>" + c + "℃</h1><p>" + b + "</p></div></div>");
+		e = e.join("");
+		$("body").html(e)
+	})
+});
